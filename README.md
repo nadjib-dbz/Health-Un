@@ -4,6 +4,8 @@
 
 Health'un is a comprehensive wellness platform designed for Algerians, combining trusted health information, personalized wellness plans, and a marketplace for bio products.
 
+**Note: This is a private project developed for InjazElJazair.**
+
 ## 🌿 About Health'un
 
 Health'un combines local expertise with global wellness standards to provide a complete health ecosystem for Algerians. Our platform connects users with verified health content, personalized wellness plans, and quality bio products from local producers, all in one place.
@@ -71,9 +73,9 @@ health-un-wellness/
 
 ### Installation
 
-1. Clone the repository:
+1. Clone the repository from the private InjazElJazair repository:
    ```bash
-   git clone https://github.com/yourusername/health-un-wellness.git
+   git clone <private-repository-url>
    cd health-un-wellness
    ```
 
@@ -128,10 +130,10 @@ yarn lint
 
 Health'un uses a consistent design system with:
 
-- **Typography**: 
+- **Typography**:
   - Headings: Poppins (500, 600, 700)
   - Body: Inter (400, 500, 600)
-  
+
 - **Colors**:
   - Primary: Teal-based palette
   - Neutrals: Gray scale
@@ -167,16 +169,16 @@ The application is fully responsive and optimized for:
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+This is a private project for InjazElJazair. Contributions should follow the organization's internal guidelines.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is proprietary and confidential. Unauthorized copying, distribution, or use is strictly prohibited.
 
 ## 👥 Team
 
-Health'un was created by a team of passionate developers and health enthusiasts committed to improving wellness in Algeria.
+Health'un was created by a team of passionate developers and health enthusiasts at InjazElJazair committed to improving wellness in Algeria.
 
 ---
 
-Made with ❤️ for a healthier Algeria
+Made with ❤️ for a healthier Algeria | © 2024 InjazElJazair
