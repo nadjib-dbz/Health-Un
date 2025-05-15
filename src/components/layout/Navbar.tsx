@@ -1,12 +1,17 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Menu, X, Leaf, User } from 'lucide-react';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { Menu, X, Leaf, User, ShoppingCart, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ThemeToggle from '../ui/ThemeToggle';
+import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, isAuthenticated, logout } = useAuth();
+  const { totalItems } = useCart();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +24,11 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   const navLinks = [
@@ -68,19 +78,57 @@ const Navbar = () => {
             ))}
           </nav>
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons & Cart */}
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle className="mr-2" />
-            <button className="flex items-center text-gray-700 hover:text-primary-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-primary-400">
-              <User size={20} className="mr-1" />
-              <span>Login</span>
-            </button>
-            <button className="btn btn-primary py-2">Sign Up</button>
+
+            <Link to="/cart" className="relative flex items-center text-gray-700 hover:text-primary-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-primary-400">
+              <ShoppingCart size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center text-gray-700 dark:text-gray-300">
+                  <User size={20} className="mr-1" />
+                  <span className="font-medium">{user?.name}</span>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center text-gray-700 hover:text-primary-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-primary-400"
+                >
+                  <LogOut size={20} className="mr-1" />
+                  <span>Logout</span>
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <Link to="/auth" className="flex items-center text-gray-700 hover:text-primary-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-primary-400">
+                  <User size={20} className="mr-1" />
+                  <span>Login</span>
+                </Link>
+                <Link to="/auth" className="btn btn-primary py-2">Sign Up</Link>
+              </div>
+            )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
+          {/* Mobile Menu Button & Cart */}
+          <div className="md:hidden flex items-center space-x-3">
             <ThemeToggle />
+
+            <Link to="/cart" className="relative flex items-center text-gray-700 hover:text-primary-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-primary-400">
+              <ShoppingCart size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 bg-primary-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+
             <button
               className="text-gray-700 dark:text-gray-300 p-2"
               onClick={toggleMenu}
@@ -119,11 +167,42 @@ const Navbar = () => {
               </NavLink>
             ))}
             <div className="flex flex-col space-y-3 mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 px-4">
-              <button className="flex items-center text-gray-700 dark:text-gray-300 py-2">
-                <User size={20} className="mr-2" />
-                <span>Login</span>
-              </button>
-              <button className="btn btn-primary w-full">Sign Up</button>
+              {isAuthenticated ? (
+                <>
+                  <div className="flex items-center text-gray-700 dark:text-gray-300 py-2">
+                    <User size={20} className="mr-2" />
+                    <span className="font-medium">{user?.name}</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      handleLogout();
+                      setIsMenuOpen(false);
+                    }}
+                    className="flex items-center text-gray-700 dark:text-gray-300 py-2"
+                  >
+                    <LogOut size={20} className="mr-2" />
+                    <span>Logout</span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/auth"
+                    className="flex items-center text-gray-700 dark:text-gray-300 py-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    <User size={20} className="mr-2" />
+                    <span>Login</span>
+                  </Link>
+                  <Link
+                    to="/auth"
+                    className="btn btn-primary w-full"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign Up
+                  </Link>
+                </>
+              )}
             </div>
           </nav>
         </motion.div>

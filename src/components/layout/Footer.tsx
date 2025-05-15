@@ -62,7 +62,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-2 text-primary-600 dark:text-primary-400 mt-1 flex-shrink-0" />
-                <span className="text-gray-600 dark:text-gray-400">123 Wellness Street, Algiers, Algeria</span>
+                <span className="text-gray-600 dark:text-gray-400">123 les pins Maritimmes Algiers, Algeria</span>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 text-primary-600 dark:text-primary-400 flex-shrink-0" />
@@ -73,7 +73,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 text-primary-600 dark:text-primary-400 flex-shrink-0" />
                 <a href="tel:+213123456789" className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors duration-300">
-                  +213 12 345 6789
+                  +213 549769944
                 </a>
               </li>
             </ul>

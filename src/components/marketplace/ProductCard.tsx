@@ -1,12 +1,40 @@
 import { motion } from 'framer-motion';
-import { ShoppingBag, Star, Check } from 'lucide-react';
+import { ShoppingBag, Star, Check, ShoppingCart } from 'lucide-react';
 import { Product } from '../../data/products';
+import { useCart } from '../../context/CartContext';
+import { useState } from 'react';
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const { addItem } = useCart();
+  const [isAdding, setIsAdding] = useState(false);
+
+  const handleAddToCart = () => {
+    if (!product.inStock) return;
+
+    setIsAdding(true);
+
+    // Add item to cart
+    addItem({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      seller: {
+        name: product.seller.name,
+        location: product.seller.location
+      }
+    });
+
+    // Reset button after animation
+    setTimeout(() => {
+      setIsAdding(false);
+    }, 1000);
+  };
+
   return (
     <motion.div
       className="card group"
@@ -37,13 +65,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <h3 className="font-heading font-semibold text-lg line-clamp-1">{product.name}</h3>
           <div className="text-lg font-bold text-primary-600">{product.price} DA</div>
         </div>
-        
+
         <div className="flex items-center mb-3">
           <div className="flex items-center mr-2">
             <Star size={16} className="text-yellow-400 fill-yellow-400" />
             <span className="ml-1 text-sm font-medium">{product.rating.toFixed(1)}</span>
           </div>
-          
+
           {product.seller.verified && (
             <div className="flex items-center text-primary-600 text-sm">
               <Check size={16} className="mr-1" />
@@ -51,23 +79,36 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           )}
         </div>
-        
+
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
-        
+
         <div className="flex items-center justify-between">
           <span className="text-xs text-gray-500">
             {product.seller.name}, {product.seller.location}
           </span>
-          
-          <button 
+
+          <motion.button
             className={`btn py-2 px-3 text-sm ${product.inStock ? 'btn-primary' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
             disabled={!product.inStock}
+            onClick={handleAddToCart}
+            whileTap={{ scale: 0.95 }}
+            animate={isAdding ? { scale: [1, 1.2, 1] } : {}}
+            transition={{ duration: 0.3 }}
           >
-            <ShoppingBag size={16} className="mr-1" />
-            Add to Cart
-          </button>
+            {isAdding ? (
+              <>
+                <ShoppingCart size={16} className="mr-1" />
+                Added!
+              </>
+            ) : (
+              <>
+                <ShoppingBag size={16} className="mr-1" />
+                Add to Cart
+              </>
+            )}
+          </motion.button>
         </div>
       </div>
     </motion.div>

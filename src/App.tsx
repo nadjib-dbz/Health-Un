@@ -10,6 +10,8 @@ import HealthInfoPage from './pages/HealthInfoPage';
 import HealthPlanPage from './pages/HealthPlanPage';
 import MarketplacePage from './pages/MarketplacePage';
 import AboutUsPage from './pages/AboutUsPage';
+import AuthPage from './pages/AuthPage';
+import CartPage from './pages/CartPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route path="health-plan" element={<HealthPlanPage />} />
           <Route path="marketplace" element={<MarketplacePage />} />
           <Route path="about-us" element={<AboutUsPage />} />
+          <Route path="auth" element={<AuthPage />} />
+          <Route path="cart" element={<CartPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
