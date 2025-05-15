@@ -22,7 +22,7 @@ interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-  // Check for user preference in localStorage or use system preference
+  // Check for user preference in localStorage or default to light mode
   const getInitialTheme = (): Theme => {
     // Check if window is defined (for SSR)
     if (typeof window !== 'undefined') {
@@ -31,12 +31,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       if (storedTheme) {
         return storedTheme;
       }
-      
-      // If no stored preference, check system preference
-      const userPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      return userPrefersDark ? 'dark' : 'light';
+
+      // Default to light mode regardless of system preference
+      return 'light';
     }
-    
+
     // Default to light if window is not defined
     return 'light';
   };
@@ -46,30 +45,34 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   // Apply theme class to document
   useEffect(() => {
     const root = window.document.documentElement;
-    
+
     // Remove both classes first
     root.classList.remove('light', 'dark');
-    
+
     // Add the current theme class
     root.classList.add(theme);
-    
+
     // Store the theme preference in localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  // Listen for system preference changes
+  // We're not automatically changing theme based on system preference anymore
+  // But we'll keep this effect in case we want to re-enable it in the future
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    
+
     const handleChange = () => {
-      // Only change theme if user hasn't explicitly set a preference
+      // This is now disabled - we always default to light mode
+      // Only uncomment if we want to re-enable system preference detection
+      /*
       if (!localStorage.getItem('theme')) {
         setTheme(mediaQuery.matches ? 'dark' : 'light');
       }
+      */
     };
-    
+
     mediaQuery.addEventListener('change', handleChange);
-    
+
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 

@@ -40,7 +40,7 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>, category: 'goals' | 'dietaryRestrictions') => {
     const { value, checked } = e.target;
-    
+
     if (checked) {
       setFormData(prev => ({
         ...prev,
@@ -60,13 +60,13 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-heading font-semibold mb-6 text-gray-900">Your Personal Details</h2>
-      
+    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+      <h2 className="text-2xl font-heading font-semibold mb-6 text-gray-900 dark:text-white">Your Personal Details</h2>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Age */}
         <div>
-          <label htmlFor="age" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="age" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Age
           </label>
           <input
@@ -78,13 +78,13 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.age}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
-        
+
         {/* Gender */}
         <div>
-          <label htmlFor="gender" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="gender" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Gender
           </label>
           <select
@@ -93,7 +93,7 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.gender}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">Select</option>
             <option value="male">Male</option>
@@ -101,10 +101,10 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             <option value="other">Other</option>
           </select>
         </div>
-        
+
         {/* Height */}
         <div>
-          <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="height" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Height (cm)
           </label>
           <input
@@ -116,13 +116,13 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.height}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
-        
+
         {/* Weight */}
         <div>
-          <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="weight" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Weight (kg)
           </label>
           <input
@@ -134,13 +134,13 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.weight}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
-        
+
         {/* Activity Level */}
         <div>
-          <label htmlFor="activityLevel" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="activityLevel" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Activity Level
           </label>
           <select
@@ -149,7 +149,7 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.activityLevel}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">Select</option>
             <option value="sedentary">Sedentary (little to no exercise)</option>
@@ -159,10 +159,10 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             <option value="veryActive">Very Active (hard daily exercise & physical job)</option>
           </select>
         </div>
-        
+
         {/* Sleep Hours */}
         <div>
-          <label htmlFor="sleepHours" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="sleepHours" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Average Sleep Hours (per night)
           </label>
           <select
@@ -171,7 +171,7 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.sleepHours}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">Select</option>
             <option value="less-than-5">Less than 5 hours</option>
@@ -180,10 +180,10 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             <option value="more-than-8">More than 8 hours</option>
           </select>
         </div>
-        
+
         {/* Stress Level */}
         <div className="md:col-span-2">
-          <label htmlFor="stressLevel" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="stressLevel" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Stress Level
           </label>
           <select
@@ -192,7 +192,7 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
             required
             value={formData.stressLevel}
             onChange={handleInputChange}
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           >
             <option value="">Select</option>
             <option value="low">Low (rarely feel stressed)</option>
@@ -202,10 +202,10 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
           </select>
         </div>
       </div>
-      
+
       {/* Health Goals */}
       <div className="mt-8">
-        <h3 className="text-lg font-medium mb-3 text-gray-800">Health Goals (select all that apply)</h3>
+        <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">Health Goals (select all that apply)</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {['Weight loss', 'Muscle gain', 'Better sleep', 'Stress reduction', 'Improved energy', 'Heart health', 'Balanced nutrition', 'General wellness'].map((goal) => (
             <div key={goal} className="flex items-center">
@@ -216,19 +216,19 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
                 value={goal}
                 checked={formData.goals.includes(goal)}
                 onChange={(e) => handleCheckboxChange(e, 'goals')}
-                className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                className="w-4 h-4 text-primary-600 border-gray-300 dark:border-gray-600 rounded focus:ring-primary-500"
               />
-              <label htmlFor={`goal-${goal}`} className="ml-2 text-sm text-gray-700">
+              <label htmlFor={`goal-${goal}`} className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                 {goal}
               </label>
             </div>
           ))}
         </div>
       </div>
-      
+
       {/* Dietary Restrictions */}
       <div className="mt-6">
-        <h3 className="text-lg font-medium mb-3 text-gray-800">Dietary Restrictions (if any)</h3>
+        <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">Dietary Restrictions (if any)</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           {['Vegetarian', 'Vegan', 'Gluten-free', 'Dairy-free', 'Nut allergies', 'Low-carb', 'Halal', 'No restrictions'].map((restriction) => (
             <div key={restriction} className="flex items-center">
@@ -239,16 +239,16 @@ const PlanForm: React.FC<PlanFormProps> = ({ onSubmit }) => {
                 value={restriction}
                 checked={formData.dietaryRestrictions.includes(restriction)}
                 onChange={(e) => handleCheckboxChange(e, 'dietaryRestrictions')}
-                className="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500"
+                className="w-4 h-4 text-primary-600 border-gray-300 dark:border-gray-600 rounded focus:ring-primary-500"
               />
-              <label htmlFor={`restriction-${restriction}`} className="ml-2 text-sm text-gray-700">
+              <label htmlFor={`restriction-${restriction}`} className="ml-2 text-sm text-gray-700 dark:text-gray-300">
                 {restriction}
               </label>
             </div>
           ))}
         </div>
       </div>
-      
+
       <motion.button
         type="submit"
         className="mt-8 w-full btn btn-primary"

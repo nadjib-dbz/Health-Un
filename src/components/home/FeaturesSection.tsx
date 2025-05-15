@@ -45,31 +45,31 @@ const item = {
 
 const FeaturesSection = () => {
   return (
-    <section className="section bg-gray-50">
+    <section className="section bg-gray-50 dark:bg-gray-900">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="title-md text-gray-900 mb-4">Why Choose Health'un?</h2>
-          <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+        <div className="text-center mb-16 w-full">
+          <h2 className="title-md text-gray-900 dark:text-white mb-4">Why Choose Health'un?</h2>
+          <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
             We're more than just health information. Health'un provides a complete wellness ecosystem for Algerians.
           </p>
         </div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full"
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
         >
           {features.map((feature) => (
-            <motion.div 
+            <motion.div
               key={feature.id}
-              className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+              className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
               variants={item}
             >
-              <div className="mb-4">{feature.icon}</div>
-              <h3 className="font-heading font-semibold text-xl mb-3">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
+              <div className="mb-4 dark:text-primary-400">{feature.icon}</div>
+              <h3 className="font-heading font-semibold text-xl mb-3 dark:text-white">{feature.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>

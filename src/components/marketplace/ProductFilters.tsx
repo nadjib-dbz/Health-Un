@@ -44,41 +44,29 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
   return (
     <div className="mb-8">
       {/* Mobile Filter Toggle */}
-      <div className="flex justify-between items-center mb-4 md:hidden">
+      <div className="flex items-center mb-4 md:hidden">
         <button
           onClick={toggleMobileFilters}
-          className="flex items-center text-gray-700 font-medium"
+          className="flex items-center text-gray-700 dark:text-gray-300 font-medium"
         >
           <Filter size={20} className="mr-2" />
           Filters
-          <ArrowDown 
-            size={16} 
-            className={`ml-1 transition-transform duration-300 ${showMobileFilters ? 'rotate-180' : ''}`} 
+          <ArrowDown
+            size={16}
+            className={`ml-1 transition-transform duration-300 ${showMobileFilters ? 'rotate-180' : ''}`}
           />
         </button>
-        
-        <div className="relative">
-          <select
-            onChange={(e) => onSortChange(e.target.value)}
-            className="bg-white border border-gray-300 text-gray-700 py-2 pl-3 pr-8 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          >
-            <option value="newest">Newest</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
-          </select>
-        </div>
       </div>
-      
+
       {/* Mobile Filters */}
-      <motion.div 
+      <motion.div
         className={`md:hidden overflow-hidden transition-all duration-300`}
         initial={false}
         animate={{ height: showMobileFilters ? 'auto' : 0, opacity: showMobileFilters ? 1 : 0 }}
       >
-        <div className="p-4 bg-gray-50 rounded-lg mb-4">
+        <div className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg mb-4">
           <div className="mb-4">
-            <h3 className="font-medium mb-2">Categories</h3>
+            <h3 className="font-medium mb-2 dark:text-white">Categories</h3>
             <div className="flex flex-wrap gap-2">
               {['All', ...categories].map((category) => (
                 <button
@@ -86,7 +74,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                   className={`px-3 py-1 rounded-full text-sm font-medium transition-colors duration-300 ${
                     activeCategory === category
                       ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                   onClick={() => handleCategoryClick(category)}
                 >
@@ -95,9 +83,9 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               ))}
             </div>
           </div>
-          
+
           <div className="mb-4">
-            <h3 className="font-medium mb-2">Price Range</h3>
+            <h3 className="font-medium mb-2 dark:text-white">Price Range</h3>
             <div className="flex items-center gap-2 mb-2">
               <input
                 type="number"
@@ -105,18 +93,18 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                 max="10000"
                 value={minPrice}
                 onChange={(e) => setMinPrice(Number(e.target.value))}
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white rounded-md"
               />
-              <span>to</span>
+              <span className="dark:text-gray-300">to</span>
               <input
                 type="number"
                 min="0"
                 max="10000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white rounded-md"
               />
-              <span>DA</span>
+              <span className="dark:text-gray-300">DA</span>
             </div>
             <button
               onClick={handlePriceChange}
@@ -125,13 +113,13 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               Apply
             </button>
           </div>
-          
+
           <div>
-            <h3 className="font-medium mb-2">Organic Products</h3>
+            <h3 className="font-medium mb-2 dark:text-white">Organic Products</h3>
             <div className="flex gap-2">
               <button
                 className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  organicFilter === true ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700'
+                  organicFilter === true ? 'bg-primary-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                 }`}
                 onClick={() => handleOrganicFilterChange(true)}
               >
@@ -140,7 +128,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               </button>
               <button
                 className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  organicFilter === null ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700'
+                  organicFilter === null ? 'bg-primary-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                 }`}
                 onClick={() => handleOrganicFilterChange(null)}
               >
@@ -150,13 +138,13 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           </div>
         </div>
       </motion.div>
-      
-      {/* Desktop Filters and Sort */}
-      <div className="hidden md:flex justify-between items-start">
+
+      {/* Desktop Filters */}
+      <div className="hidden md:block">
         <div className="flex flex-col gap-6">
           {/* Categories */}
           <div>
-            <h3 className="font-medium mb-3">Categories</h3>
+            <h3 className="font-medium mb-3 dark:text-white">Categories</h3>
             <div className="flex flex-wrap gap-2">
               {['All', ...categories].map((category) => (
                 <button
@@ -164,7 +152,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 ${
                     activeCategory === category
                       ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                   onClick={() => handleCategoryClick(category)}
                 >
@@ -173,10 +161,10 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               ))}
             </div>
           </div>
-          
+
           {/* Price Range */}
           <div>
-            <h3 className="font-medium mb-3">Price Range</h3>
+            <h3 className="font-medium mb-3 dark:text-white">Price Range</h3>
             <div className="flex items-center gap-2 mb-3">
               <input
                 type="number"
@@ -184,18 +172,18 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
                 max="10000"
                 value={minPrice}
                 onChange={(e) => setMinPrice(Number(e.target.value))}
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white rounded-md"
               />
-              <span>to</span>
+              <span className="dark:text-gray-300">to</span>
               <input
                 type="number"
                 min="0"
                 max="10000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-24 p-2 border border-gray-300 rounded-md"
+                className="w-24 p-2 border border-gray-300 dark:border-gray-700 dark:bg-gray-700 dark:text-white rounded-md"
               />
-              <span>DA</span>
+              <span className="dark:text-gray-300">DA</span>
             </div>
             <button
               onClick={handlePriceChange}
@@ -204,14 +192,14 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               Apply
             </button>
           </div>
-          
+
           {/* Organic Filter */}
           <div>
-            <h3 className="font-medium mb-3">Product Type</h3>
+            <h3 className="font-medium mb-3 dark:text-white">Product Type</h3>
             <div className="flex gap-2">
               <button
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
-                  organicFilter === true ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700'
+                  organicFilter === true ? 'bg-primary-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                 }`}
                 onClick={() => handleOrganicFilterChange(true)}
               >
@@ -220,7 +208,7 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               </button>
               <button
                 className={`px-4 py-2 rounded-full text-sm font-medium ${
-                  organicFilter === null ? 'bg-primary-600 text-white' : 'bg-gray-100 text-gray-700'
+                  organicFilter === null ? 'bg-primary-600 text-white' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                 }`}
                 onClick={() => handleOrganicFilterChange(null)}
               >
@@ -228,20 +216,6 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
               </button>
             </div>
           </div>
-        </div>
-        
-        {/* Sort */}
-        <div className="flex items-center">
-          <span className="mr-2 text-gray-700">Sort by:</span>
-          <select
-            onChange={(e) => onSortChange(e.target.value)}
-            className="bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-          >
-            <option value="newest">Newest</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="rating">Highest Rated</option>
-          </select>
         </div>
       </div>
     </div>

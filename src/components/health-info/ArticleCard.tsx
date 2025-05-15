@@ -34,7 +34,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         </div>
       </div>
       <div className="p-5">
-        <div className="flex items-center text-gray-500 text-sm mb-3">
+        <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-3">
           <div className="flex items-center mr-4">
             <CalendarIcon size={14} className="mr-1" />
             <span>{article.date}</span>
@@ -44,15 +44,15 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
             <span>{article.readTime}</span>
           </div>
         </div>
-        <h3 className="font-heading font-semibold text-lg mb-2 line-clamp-2">
+        <h3 className="font-heading font-semibold text-lg mb-2 line-clamp-2 dark:text-white">
           {article.title}
         </h3>
-        <p className="text-gray-600 mb-4 line-clamp-3">
+        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
           {article.excerpt}
         </p>
         <Link
           to={`/health-info/${article.id}`}
-          className="text-primary-600 font-medium hover:text-primary-700 hover:underline inline-flex items-center"
+          className="text-primary-600 dark:text-primary-400 font-medium hover:text-primary-700 dark:hover:text-primary-300 hover:underline inline-flex items-center"
         >
           Read More
           <svg

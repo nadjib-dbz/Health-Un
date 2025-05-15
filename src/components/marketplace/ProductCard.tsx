@@ -48,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         {!product.inStock && (
-          <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black bg-opacity-60 dark:bg-opacity-70 flex items-center justify-center">
             <span className="text-white font-medium text-lg">Out of Stock</span>
           </div>
         )}
@@ -62,8 +62,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
       <div className="p-5">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="font-heading font-semibold text-lg line-clamp-1">{product.name}</h3>
-          <div className="text-lg font-bold text-primary-600">{product.price} DA</div>
+          <h3 className="font-heading font-semibold text-lg line-clamp-1 dark:text-white">{product.name}</h3>
+          <div className="text-lg font-bold text-primary-600 dark:text-primary-400">{product.price} DA</div>
         </div>
 
         <div className="flex items-center mb-3">
@@ -73,19 +73,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
 
           {product.seller.verified && (
-            <div className="flex items-center text-primary-600 text-sm">
+            <div className="flex items-center text-primary-600 dark:text-primary-400 text-sm">
               <Check size={16} className="mr-1" />
               <span>Verified Seller</span>
             </div>
           )}
         </div>
 
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
           {product.description}
         </p>
 
         <div className="flex items-center justify-between">
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-gray-500 dark:text-gray-400">
             {product.seller.name}, {product.seller.location}
           </span>
 

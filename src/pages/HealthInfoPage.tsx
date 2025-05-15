@@ -53,19 +53,19 @@ const HealthInfoPage = () => {
         <meta name="description" content="Explore trustworthy health articles, tips, and in-depth information on nutrition, fitness, mental health, and wellness." />
       </Helmet>
 
-      <section className="py-12 md:py-16 bg-primary-50">
+      <section className="py-12 md:py-16 bg-primary-50 dark:bg-primary-900/20">
         <div className="container-custom">
           <div className="text-center mb-12">
-            <motion.h1 
-              className="title-md text-gray-900 mb-4"
+            <motion.h1
+              className="title-md text-gray-900 dark:text-white mb-4"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               Evidence-Based Health Information
             </motion.h1>
-            <motion.p 
-              className="text-lg text-gray-700 max-w-2xl mx-auto"
+            <motion.p
+              className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -84,7 +84,7 @@ const HealthInfoPage = () => {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-white dark:bg-gray-950">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -95,17 +95,17 @@ const HealthInfoPage = () => {
           </motion.div>
 
           {displayedArticles.length === 0 ? (
-            <motion.div 
+            <motion.div
               className="text-center py-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-xl font-heading font-medium text-gray-700 mb-2">No articles found</h3>
-              <p className="text-gray-600">Try adjusting your search or browse different categories.</p>
+              <h3 className="text-xl font-heading font-medium text-gray-700 dark:text-gray-300 mb-2">No articles found</h3>
+              <p className="text-gray-600 dark:text-gray-400">Try adjusting your search or browse different categories.</p>
             </motion.div>
           ) : (
-            <motion.div 
+            <motion.div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               variants={container}
               initial="hidden"

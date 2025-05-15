@@ -11,7 +11,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
   const heightInM = parseFloat(userData.height) / 100;
   const weightInKg = parseFloat(userData.weight);
   const bmi = weightInKg / (heightInM * heightInM);
-  
+
   // Generate nutrition plan based on goals
   const getNutritionPlan = () => {
     if (userData.goals.includes('Weight loss')) {
@@ -26,7 +26,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         ]
       };
     }
-    
+
     if (userData.goals.includes('Muscle gain')) {
       return {
         calorieRange: '2500-2800',
@@ -39,7 +39,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         ]
       };
     }
-    
+
     return {
       calorieRange: '2000-2200',
       macros: { protein: '25%', carbs: '50%', fats: '25%' },
@@ -51,7 +51,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
       ]
     };
   };
-  
+
   // Generate fitness plan based on activity level and goals
   const getFitnessPlan = () => {
     if (userData.activityLevel === 'sedentary' || userData.activityLevel === 'light') {
@@ -64,7 +64,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         ]
       };
     }
-    
+
     if (userData.activityLevel === 'moderate') {
       return {
         weeklyPlan: [
@@ -75,7 +75,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         ]
       };
     }
-    
+
     return {
       weeklyPlan: [
         '4-5 days of alternating cardio intensity',
@@ -85,11 +85,11 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
       ]
     };
   };
-  
+
   // Generate wellness recommendations based on stress and sleep
   const getWellnessRecommendations = () => {
     const recommendations = [];
-    
+
     if (userData.stressLevel === 'high' || userData.stressLevel === 'severe') {
       recommendations.push(
         'Daily meditation practice (10-15 minutes)',
@@ -104,7 +104,7 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         'Social connection with friends/family'
       );
     }
-    
+
     if (userData.sleepHours === 'less-than-5' || userData.sleepHours === '5-6') {
       recommendations.push(
         'Establish consistent sleep/wake schedule',
@@ -113,14 +113,14 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         'Maintain cool, dark sleeping environment'
       );
     }
-    
+
     return recommendations;
   };
-  
+
   const nutritionPlan = getNutritionPlan();
   const fitnessPlan = getFitnessPlan();
   const wellnessRecommendations = getWellnessRecommendations();
-  
+
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -130,50 +130,50 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
       }
     }
   };
-  
+
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 }
   };
 
   return (
-    <motion.div 
-      className="bg-white p-6 rounded-xl shadow-md"
+    <motion.div
+      className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-heading font-semibold mb-2 text-gray-900">Your Personalized Health Plan</h2>
-        <p className="text-gray-600">Based on your unique profile and goals</p>
+        <h2 className="text-2xl font-heading font-semibold mb-2 text-gray-900 dark:text-white">Your Personalized Health Plan</h2>
+        <p className="text-gray-600 dark:text-gray-400">Based on your unique profile and goals</p>
       </div>
-      
+
       {/* Overview & Stats */}
-      <div className="bg-gray-50 p-4 rounded-lg mb-8">
-        <h3 className="font-medium text-gray-900 mb-3">Profile Overview</h3>
+      <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-8">
+        <h3 className="font-medium text-gray-900 dark:text-white mb-3">Profile Overview</h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
           <div className="text-center">
-            <p className="text-sm text-gray-500">BMI</p>
-            <p className="text-lg font-semibold">{bmi.toFixed(1)}</p>
-            <p className="text-xs text-gray-500">
-              {bmi < 18.5 ? 'Underweight' : 
-               bmi < 25 ? 'Healthy' : 
+            <p className="text-sm text-gray-500 dark:text-gray-400">BMI</p>
+            <p className="text-lg font-semibold dark:text-white">{bmi.toFixed(1)}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {bmi < 18.5 ? 'Underweight' :
+               bmi < 25 ? 'Healthy' :
                bmi < 30 ? 'Overweight' : 'Obese'}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-500">Daily Calorie Need</p>
-            <p className="text-lg font-semibold">{nutritionPlan.calorieRange}</p>
-            <p className="text-xs text-gray-500">kcal</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Daily Calorie Need</p>
+            <p className="text-lg font-semibold dark:text-white">{nutritionPlan.calorieRange}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">kcal</p>
           </div>
           <div className="text-center">
-            <p className="text-sm text-gray-500">Primary Goals</p>
-            <p className="text-lg font-semibold">{userData.goals.length}</p>
-            <p className="text-xs text-gray-500">Selected</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Primary Goals</p>
+            <p className="text-lg font-semibold dark:text-white">{userData.goals.length}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">Selected</p>
           </div>
         </div>
       </div>
-      
+
       <motion.div
         variants={container}
         initial="hidden"
@@ -182,105 +182,105 @@ const PlanDisplay: React.FC<PlanDisplayProps> = ({ userData }) => {
         {/* Nutrition Section */}
         <motion.div variants={item} className="mb-8">
           <div className="flex items-center mb-4">
-            <div className="bg-primary-100 p-2 rounded-full mr-3">
-              <Utensils className="h-6 w-6 text-primary-600" />
+            <div className="bg-primary-100 dark:bg-primary-900/50 p-2 rounded-full mr-3">
+              <Utensils className="h-6 w-6 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-heading font-semibold">Nutrition Plan</h3>
+            <h3 className="text-xl font-heading font-semibold dark:text-white">Nutrition Plan</h3>
           </div>
           <div className="ml-12">
             <div className="mb-3">
-              <p className="text-gray-700 mb-1">Recommended Daily Macros:</p>
+              <p className="text-gray-700 dark:text-gray-300 mb-1">Recommended Daily Macros:</p>
               <div className="flex gap-3">
-                <span className="bg-primary-50 text-primary-700 text-sm px-3 py-1 rounded-full">
+                <span className="bg-primary-50 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm px-3 py-1 rounded-full">
                   Protein: {nutritionPlan.macros.protein}
                 </span>
-                <span className="bg-primary-50 text-primary-700 text-sm px-3 py-1 rounded-full">
+                <span className="bg-primary-50 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm px-3 py-1 rounded-full">
                   Carbs: {nutritionPlan.macros.carbs}
                 </span>
-                <span className="bg-primary-50 text-primary-700 text-sm px-3 py-1 rounded-full">
+                <span className="bg-primary-50 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 text-sm px-3 py-1 rounded-full">
                   Fats: {nutritionPlan.macros.fats}
                 </span>
               </div>
             </div>
             <div>
-              <p className="text-gray-700 mb-2">Sample Meal Plan:</p>
+              <p className="text-gray-700 dark:text-gray-300 mb-2">Sample Meal Plan:</p>
               <ul className="space-y-2">
                 {nutritionPlan.mealPlan.map((meal, index) => (
                   <li key={index} className="flex items-start">
-                    <Check size={16} className="text-primary-600 mr-2 mt-1 flex-shrink-0" />
-                    <span className="text-gray-600">{meal}</span>
+                    <Check size={16} className="text-primary-600 dark:text-primary-400 mr-2 mt-1 flex-shrink-0" />
+                    <span className="text-gray-600 dark:text-gray-400">{meal}</span>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
         </motion.div>
-        
+
         {/* Fitness Section */}
         <motion.div variants={item} className="mb-8">
           <div className="flex items-center mb-4">
-            <div className="bg-primary-100 p-2 rounded-full mr-3">
-              <Dumbbell className="h-6 w-6 text-primary-600" />
+            <div className="bg-primary-100 dark:bg-primary-900/50 p-2 rounded-full mr-3">
+              <Dumbbell className="h-6 w-6 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-heading font-semibold">Fitness Plan</h3>
+            <h3 className="text-xl font-heading font-semibold dark:text-white">Fitness Plan</h3>
           </div>
           <div className="ml-12">
-            <p className="text-gray-700 mb-2">Weekly Exercise Recommendations:</p>
+            <p className="text-gray-700 dark:text-gray-300 mb-2">Weekly Exercise Recommendations:</p>
             <ul className="space-y-2">
               {fitnessPlan.weeklyPlan.map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <Check size={16} className="text-primary-600 mr-2 mt-1 flex-shrink-0" />
-                  <span className="text-gray-600">{item}</span>
+                  <Check size={16} className="text-primary-600 dark:text-primary-400 mr-2 mt-1 flex-shrink-0" />
+                  <span className="text-gray-600 dark:text-gray-400">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
         </motion.div>
-        
+
         {/* Wellness Section */}
         <motion.div variants={item} className="mb-8">
           <div className="flex items-center mb-4">
-            <div className="bg-primary-100 p-2 rounded-full mr-3">
-              <Brain className="h-6 w-6 text-primary-600" />
+            <div className="bg-primary-100 dark:bg-primary-900/50 p-2 rounded-full mr-3">
+              <Brain className="h-6 w-6 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-heading font-semibold">Wellness Recommendations</h3>
+            <h3 className="text-xl font-heading font-semibold dark:text-white">Wellness Recommendations</h3>
           </div>
           <div className="ml-12">
             <ul className="space-y-2">
               {wellnessRecommendations.map((item, index) => (
                 <li key={index} className="flex items-start">
-                  <Check size={16} className="text-primary-600 mr-2 mt-1 flex-shrink-0" />
-                  <span className="text-gray-600">{item}</span>
+                  <Check size={16} className="text-primary-600 dark:text-primary-400 mr-2 mt-1 flex-shrink-0" />
+                  <span className="text-gray-600 dark:text-gray-400">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
         </motion.div>
-        
+
         {/* Sleep Section */}
         <motion.div variants={item}>
           <div className="flex items-center mb-4">
-            <div className="bg-primary-100 p-2 rounded-full mr-3">
-              <Moon className="h-6 w-6 text-primary-600" />
+            <div className="bg-primary-100 dark:bg-primary-900/50 p-2 rounded-full mr-3">
+              <Moon className="h-6 w-6 text-primary-600 dark:text-primary-400" />
             </div>
-            <h3 className="text-xl font-heading font-semibold">Sleep Guidance</h3>
+            <h3 className="text-xl font-heading font-semibold dark:text-white">Sleep Guidance</h3>
           </div>
           <div className="ml-12">
-            <p className="text-gray-600 mb-3">
-              Based on your profile, we recommend <span className="font-medium">{userData.goals.includes('Better sleep') ? '7-9' : '7-8'} hours</span> of quality sleep per night.
+            <p className="text-gray-600 dark:text-gray-400 mb-3">
+              Based on your profile, we recommend <span className="font-medium dark:text-white">{userData.goals.includes('Better sleep') ? '7-9' : '7-8'} hours</span> of quality sleep per night.
             </p>
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <p className="text-blue-800 text-sm">
+            <div className="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
+              <p className="text-blue-800 dark:text-blue-300 text-sm">
                 <span className="font-medium">Pro tip:</span> Quality sleep is essential for your {userData.goals.includes('Weight loss') ? 'weight management' : 'health'} goals. Consider using our sleep tracking feature to monitor your patterns.
               </p>
             </div>
           </div>
         </motion.div>
       </motion.div>
-      
-      <div className="mt-10 pt-6 border-t border-gray-200">
+
+      <div className="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
         <div className="flex justify-between items-center">
-          <p className="text-gray-500 text-sm">This plan is personalized based on your inputs and designed to be sustainable.</p>
+          <p className="text-gray-500 dark:text-gray-400 text-sm">This plan is personalized based on your inputs and designed to be sustainable.</p>
           <motion.button
             className="btn btn-primary"
             whileHover={{ scale: 1.05 }}
