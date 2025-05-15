@@ -30,7 +30,7 @@ const testimonials = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="section bg-primary-50 dark:bg-primary-900/20">
+    <section className="section bg-primary-50 dark:bg-gray-900">
       <div className="container-custom">
         <div className="text-center mb-16 w-full">
           <h2 className="title-md text-gray-900 dark:text-white mb-4">What Our Community Says</h2>
