@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+body {
+  @apply bg-white text-gray-800 antialiased;
+}
+
+.container-custom {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.btn {
+  @apply px-6 py-3 rounded-full font-medium transition-all duration-300 inline-flex items-center justify-center;
+}
+
+.btn-primary {
+  @apply bg-primary-600 text-white hover:bg-primary-700 hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-white text-primary-600 border border-primary-600 hover:bg-primary-50;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+}
+
+.section {
+  @apply py-12 md:py-20;
+}
+
+.title-lg {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+}
+
+.title-md {
+  @apply text-2xl md:text-3xl font-bold;
+}
+
+.title-sm {
+  @apply text-xl md:text-2xl font-semibold;
+}
