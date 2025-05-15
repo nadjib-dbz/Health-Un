@@ -81,11 +81,11 @@ const AboutUsPage = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-28 bg-primary-50">
+      <section className="py-20 md:py-28 bg-primary-50 dark:bg-primary-900">
         <div className="container-custom">
           <div className="text-center">
             <motion.h1
-              className="title-md text-gray-900 mb-4"
+              className="title-md text-gray-900 dark:text-white mb-4"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
@@ -93,7 +93,7 @@ const AboutUsPage = () => {
               About Health'un
             </motion.h1>
             <motion.p
-              className="text-lg text-gray-700 max-w-2xl mx-auto"
+              className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -131,11 +131,11 @@ const AboutUsPage = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="title-sm text-gray-900 mb-4">Our Mission</h2>
-              <p className="text-lg text-gray-700 mb-6">
+              <h2 className="title-sm text-gray-900 dark:text-white mb-4">Our Mission</h2>
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
                 At Health'un, we're on a mission to transform how Algerians access health information and natural products. We combine local expertise with global wellness standards to create a trusted platform for your health journey.
               </p>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-600 dark:text-gray-400 mb-8">
                 Our platform connects you with verified health content, personalized wellness plans, and quality bio products from local producers, all in one place.
               </p>
 
@@ -149,8 +149,8 @@ const AboutUsPage = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                   >
-                    <CheckCircle className="text-primary-600 mr-2 flex-shrink-0 mt-1" size={20} />
-                    <span>{item}</span>
+                    <CheckCircle className="text-primary-600 dark:text-primary-400 mr-2 flex-shrink-0 mt-1" size={20} />
+                    <span className="dark:text-gray-300">{item}</span>
                   </motion.li>
                 ))}
               </ul>
@@ -160,11 +160,11 @@ const AboutUsPage = () => {
       </section>
 
       {/* Values Section */}
-      <section className="section bg-gray-50">
+      <section className="section bg-gray-50 dark:bg-gray-900">
         <div className="container-custom">
           <div className="text-center mb-16">
-            <h2 className="title-md text-gray-900 mb-4">Our Values</h2>
-            <p className="text-lg text-gray-700 max-w-2xl mx-auto">
+            <h2 className="title-md text-gray-900 dark:text-white mb-4">Our Values</h2>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
               The core principles that guide everything we do at Health'un.
             </p>
           </div>
@@ -173,14 +173,14 @@ const AboutUsPage = () => {
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-md"
+                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <h3 className="font-heading font-semibold text-xl mb-2">{value.title}</h3>
-                <p className="text-gray-600">{value.description}</p>
+                <h3 className="font-heading font-semibold text-xl mb-2 dark:text-white">{value.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{value.description}</p>
               </motion.div>
             ))}
           </div>

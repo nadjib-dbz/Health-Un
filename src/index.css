@@ -12,14 +12,14 @@
     scroll-behavior: smooth;
     font-family: var(--font-body);
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
   }
 }
 
 body {
-  @apply bg-white text-gray-800 antialiased;
+  @apply bg-white text-gray-800 antialiased dark:bg-gray-950 dark:text-gray-200;
 }
 
 .container-custom {
@@ -31,15 +31,15 @@ body {
 }
 
 .btn-primary {
-  @apply bg-primary-600 text-white hover:bg-primary-700 hover:shadow-lg;
+  @apply bg-primary-600 text-white hover:bg-primary-700 hover:shadow-lg dark:bg-primary-700 dark:hover:bg-primary-600;
 }
 
 .btn-secondary {
-  @apply bg-white text-primary-600 border border-primary-600 hover:bg-primary-50;
+  @apply bg-white text-primary-600 border border-primary-600 hover:bg-primary-50 dark:bg-gray-800 dark:text-primary-400 dark:border-primary-700 dark:hover:bg-gray-700;
 }
 
 .card {
-  @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
+  @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg dark:bg-gray-800 dark:shadow-gray-900;
 }
 
 .section {
@@ -47,13 +47,13 @@ body {
 }
 
 .title-lg {
-  @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold dark:text-white;
 }
 
 .title-md {
-  @apply text-2xl md:text-3xl font-bold;
+  @apply text-2xl md:text-3xl font-bold dark:text-white;
 }
 
 .title-sm {
-  @apply text-xl md:text-2xl font-semibold;
+  @apply text-xl md:text-2xl font-semibold dark:text-white;
 }
