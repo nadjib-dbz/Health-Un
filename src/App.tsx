@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 
 // Layout
 import Layout from './components/layout/Layout';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 // Pages
 import HomePage from './pages/HomePage';

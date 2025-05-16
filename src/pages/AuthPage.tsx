@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Leaf, Mail, Lock, User, AlertCircle, Loader } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Leaf, Mail, Lock, User, AlertCircle, Loader, Info } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const AuthPage: React.FC = () => {
@@ -11,66 +11,97 @@ const AuthPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [formError, setFormError] = useState<string | null>(null);
-  
-  const { login, signup, isLoading, error } = useAuth();
+  const [redirectMessage, setRedirectMessage] = useState<string | null>(null);
+
+  const { login, signup, isLoading, error, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  
+  const location = useLocation();
+
+  // Handle redirect from protected routes
+  useEffect(() => {
+    const state = location.state as { from?: string; message?: string } | null;
+    if (state?.message) {
+      setRedirectMessage(state.message);
+    }
+
+    // If user is already authenticated, redirect them back to where they came from or home
+    if (isAuthenticated) {
+      const destination = state?.from || '/';
+      navigate(destination, { replace: true });
+    }
+  }, [location, isAuthenticated, navigate]);
+
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
     setFormError(null);
   };
-  
+
   const validateForm = (): boolean => {
     setFormError(null);
-    
+
     if (!isLogin && !name.trim()) {
       setFormError('Name is required');
       return false;
     }
-    
+
     if (!email.trim()) {
       setFormError('Email is required');
       return false;
     }
-    
+
     if (!email.includes('@')) {
       setFormError('Please enter a valid email address');
       return false;
     }
-    
+
     if (password.length < 6) {
       setFormError('Password must be at least 6 characters');
       return false;
     }
-    
+
     return true;
   };
-  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     let success = false;
-    
+
     if (isLogin) {
       success = await login(email, password);
     } else {
       success = await signup(name, email, password);
     }
-    
+
     if (success) {
-      navigate('/');
+      // Check if we need to return to health plan page with saved form data
+      const state = location.state as { from?: string } | null;
+      if (state?.from === '/health-plan') {
+        // Check if we have saved form data
+        const savedFormData = sessionStorage.getItem('healthPlanFormData');
+        if (savedFormData) {
+          // We'll keep the data in session storage and let the HealthPlanPage handle it
+          navigate('/health-plan', { replace: true });
+        } else {
+          navigate('/health-plan', { replace: true });
+        }
+      } else {
+        // Default navigation
+        const destination = state?.from || '/';
+        navigate(destination, { replace: true });
+      }
     }
   };
-  
+
   return (
     <>
       <Helmet>
         <title>{isLogin ? 'Login' : 'Sign Up'} - Health'un</title>
         <meta name="description" content={isLogin ? 'Login to your Health\'un account' : 'Create a new Health\'un account'} />
       </Helmet>
-      
+
       <section className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-md w-full space-y-8">
           <motion.div
@@ -97,20 +128,27 @@ const AuthPage: React.FC = () => {
               </button>
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10"
           >
+            {redirectMessage && (
+              <div className="mb-4 p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-md flex items-start">
+                <Info className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
+                <span>{redirectMessage}</span>
+              </div>
+            )}
+
             {(error || formError) && (
               <div className="mb-4 p-3 bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-300 rounded-md flex items-start">
                 <AlertCircle className="mr-2 h-5 w-5 flex-shrink-0 mt-0.5" />
                 <span>{formError || error}</span>
               </div>
             )}
-            
+
             <form className="space-y-6" onSubmit={handleSubmit}>
               {!isLogin && (
                 <div>
@@ -134,7 +172,7 @@ const AuthPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Email address
@@ -155,7 +193,7 @@ const AuthPage: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                   Password
@@ -176,7 +214,7 @@ const AuthPage: React.FC = () => {
                   />
                 </div>
               </div>
-              
+
               {isLogin && (
                 <div className="flex items-center justify-end">
                   <div className="text-sm">
@@ -186,7 +224,7 @@ const AuthPage: React.FC = () => {
                   </div>
                 </div>
               )}
-              
+
               <div>
                 <button
                   type="submit"

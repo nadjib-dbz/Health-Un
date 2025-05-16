@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
-import { FileText, CheckCircle, HelpCircle } from 'lucide-react';
+import { FileText, CheckCircle, HelpCircle, LogIn } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 // Components
 import PlanForm, { FormData } from '../components/health-plan/PlanForm';
@@ -10,15 +12,66 @@ import PlanDisplay from '../components/health-plan/PlanDisplay';
 const HealthPlanPage = () => {
   const [userFormData, setUserFormData] = useState<FormData | null>(null);
   const [showPlan, setShowPlan] = useState(false);
+  const [formCompleted, setFormCompleted] = useState(false);
+
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // Check for saved form data when component mounts
+  useEffect(() => {
+    if (isAuthenticated) {
+      const savedFormData = sessionStorage.getItem('healthPlanFormData');
+      if (savedFormData) {
+        try {
+          const parsedData = JSON.parse(savedFormData) as FormData;
+          setUserFormData(parsedData);
+          setShowPlan(true);
+
+          // Clear the saved data
+          sessionStorage.removeItem('healthPlanFormData');
+
+          // Scroll to plan section after a short delay
+          setTimeout(() => {
+            document.getElementById('plan-results')?.scrollIntoView({ behavior: 'smooth' });
+          }, 500);
+        } catch (error) {
+          console.error('Error parsing saved form data:', error);
+          sessionStorage.removeItem('healthPlanFormData');
+        }
+      }
+    }
+  }, [isAuthenticated]);
 
   const handleFormSubmit = (data: FormData) => {
     setUserFormData(data);
-    setShowPlan(true);
 
-    // Scroll to plan section
-    setTimeout(() => {
-      document.getElementById('plan-results')?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    if (isAuthenticated) {
+      // If user is already authenticated, show the plan
+      setShowPlan(true);
+
+      // Scroll to plan section
+      setTimeout(() => {
+        document.getElementById('plan-results')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      // If user is not authenticated, mark the form as completed but don't show the plan yet
+      setFormCompleted(true);
+    }
+  };
+
+  const handleSignInClick = () => {
+    // Store form data in session storage to retrieve after login
+    if (userFormData) {
+      sessionStorage.setItem('healthPlanFormData', JSON.stringify(userFormData));
+    }
+
+    // Navigate to auth page with return path
+    navigate('/auth', {
+      state: {
+        from: '/health-plan',
+        message: 'Sign in to view your personalized health plan.'
+      }
+    });
   };
 
   return (
@@ -103,6 +156,31 @@ const HealthPlanPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {formCompleted && !isAuthenticated && (
+        <section id="sign-in-prompt" className="py-12 md:py-16 bg-gray-50 dark:bg-gray-900">
+          <div className="container-custom max-w-4xl">
+            <motion.div
+              className="text-center p-8 bg-white dark:bg-gray-800 rounded-xl shadow-md"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-2xl font-heading font-semibold mb-4 dark:text-white">Your Plan is Ready!</h2>
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                Sign in to view your personalized health plan based on the information you provided.
+              </p>
+              <button
+                onClick={handleSignInClick}
+                className="btn btn-primary text-lg px-8 py-4"
+              >
+                <LogIn className="mr-2" size={20} />
+                Sign in & Get Your Plan Now!
+              </button>
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {showPlan && userFormData && (
         <section id="plan-results" className="py-12 md:py-16 bg-gray-50 dark:bg-gray-900">
