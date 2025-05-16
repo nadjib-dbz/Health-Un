@@ -17,10 +17,10 @@ import lynaImg from '../assets/Team/lyna.jpg';
 // Team members data
 const teamMembers = [
   {
-    name: 'Heab',
+    name: 'Heba',
     role: 'Chief Operating Officer',
     image: hebaImg,
-    description: 'With over 10 years of experience in healthcare operations, Heab leads our day-to-day activities ensuring we deliver exceptional wellness solutions to our community.',
+    description: 'With over 10 years of experience in healthcare operations, Heba leads our day-to-day activities ensuring we deliver exceptional wellness solutions to our community.',
   },
   {
     name: 'Houssem',
