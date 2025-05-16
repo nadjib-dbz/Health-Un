@@ -1,6 +1,7 @@
 import { CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import aboutUsImage from '../../assets/abtus.jpeg';
 
 const benefits = [
   'Science-backed health information',
@@ -24,9 +25,9 @@ const AboutSection = () => {
             transition={{ duration: 0.5 }}
           >
             <img
-              src="https://images.pexels.com/photos/4148897/pexels-photo-4148897.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src={aboutUsImage}
               alt="About Health'un"
-              className="w-full h-auto rounded-xl shadow-lg"
+              className="w-full h-auto rounded-xl shadow-lg object-cover max-h-[400px]"
             />
           </motion.div>
 

@@ -1,13 +1,19 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import homeImage from '../../assets/Home.jpeg';
 
 const HeroSection = () => {
   return (
     <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-white dark:from-gray-900 dark:to-gray-950 -z-10"></div>
-      <div className="absolute top-0 right-0 w-full h-full bg-[url('https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1600')] bg-cover bg-center opacity-5 dark:opacity-10 -z-10"></div>
+      <div className="absolute top-0 right-0 w-full h-full -z-10" style={{
+        backgroundImage: `url(${homeImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        opacity: 0.05
+      }}></div>
 
       <div className="container-custom relative z-10">
         <div className="flex flex-col lg:flex-row items-center w-full">
@@ -43,9 +49,9 @@ const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <img
-              src="https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt="Healthy lifestyle"
-              className="w-full h-auto rounded-lg shadow-xl"
+              src={homeImage}
+              alt="Young people using Health'un app on their phones"
+              className="w-full h-auto rounded-lg shadow-xl object-cover max-h-[400px]"
             />
             {/* Floating stat cards */}
             <motion.div

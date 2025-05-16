@@ -21,7 +21,7 @@ export const products: Product[] = [
     name: "Organic Olive Oil",
     description: "Premium cold-pressed extra virgin olive oil from the Kabylie mountains. Rich in antioxidants and heart-healthy fats.",
     price: 1200,
-    image: "https://images.pexels.com/photos/33789/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1600",
+    image: "https://images.pexels.com/photos/1307658/pexels-photo-1307658.jpeg?auto=compress&cs=tinysrgb&w=1600",
     category: "Oils",
     seller: {
       name: "Aït Mouloud Farm",
@@ -197,7 +197,7 @@ export const products: Product[] = [
     name: "Ceramic Water Filter",
     description: "Handcrafted clay water purifier that naturally filters and mineralizes drinking water. Traditional design with modern efficacy.",
     price: 1900,
-    image: "https://images.pexels.com/photos/6306081/pexels-photo-6306081.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    image: "https://images.pexels.com/photos/6941883/pexels-photo-6941883.jpeg?auto=compress&cs=tinysrgb&w=1600",
     category: "Home",
     seller: {
       name: "Tlemcen Pottery Collective",
@@ -218,8 +218,8 @@ export const getProductCategories = (): string[] => {
 export const searchProducts = (query: string): Product[] => {
   const lowercaseQuery = query.toLowerCase();
   return products.filter(
-    product => 
-      product.name.toLowerCase().includes(lowercaseQuery) || 
+    product =>
+      product.name.toLowerCase().includes(lowercaseQuery) ||
       product.description.toLowerCase().includes(lowercaseQuery) ||
       product.category.toLowerCase().includes(lowercaseQuery)
   );
@@ -233,14 +233,14 @@ export const filterProductsByCategory = (category: string): Product[] => {
 };
 
 export const filterProductsByPrice = (minPrice: number, maxPrice: number): Product[] => {
-  return products.filter(product => 
+  return products.filter(product =>
     product.price >= minPrice && product.price <= maxPrice
   );
 };
 
 export const sortProducts = (products: Product[], sortBy: string): Product[] => {
   const sortedProducts = [...products];
-  
+
   switch (sortBy) {
     case 'price-low':
       return sortedProducts.sort((a, b) => a.price - b.price);

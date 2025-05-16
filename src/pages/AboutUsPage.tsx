@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import TeamSection from '../components/about/TeamSection';
+import homeImage from '../assets/Home.jpeg';
+import aboutUsImage from '../assets/abtus.jpeg';
 
 // Import team images
 import hebaImg from '../assets/Team/heba.jpg';
@@ -117,9 +119,9 @@ const AboutUsPage = () => {
               transition={{ duration: 0.5 }}
             >
               <img
-                src="https://images.pexels.com/photos/3683074/pexels-photo-3683074.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src={aboutUsImage}
                 alt="Our Mission"
-                className="w-full h-auto rounded-xl shadow-lg"
+                className="w-full h-auto rounded-xl shadow-lg object-cover max-h-[400px]"
               />
             </motion.div>
 

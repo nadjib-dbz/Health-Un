@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { MapPin, Mail, Phone, Instagram, Facebook, Twitter, Leaf } from 'lucide-react';
+import { MapPin, Mail, Phone, Instagram, Facebook, Linkedin, Leaf } from 'lucide-react';
+import XIcon from '../icons/XIcon';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -27,7 +28,10 @@ const Footer = () => {
                 <Facebook size={20} />
               </a>
               <a href="#" className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors duration-300">
-                <Twitter size={20} />
+                <XIcon size={20} />
+              </a>
+              <a href="#" className="text-gray-600 hover:text-primary-600 dark:text-gray-400 dark:hover:text-primary-400 transition-colors duration-300">
+                <Linkedin size={20} />
               </a>
             </div>
           </div>
