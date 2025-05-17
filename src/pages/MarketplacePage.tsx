@@ -87,7 +87,7 @@ const MarketplacePage = () => {
         <meta name="description" content="Shop quality bio products, organic foods, natural cosmetics, and wellness items from verified Algerian producers." />
       </Helmet>
 
-      <section className="py-12 md:py-16 bg-primary-50 dark:bg-primary-900/20">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16 bg-primary-50 dark:bg-primary-900/20">
         <div className="container-custom">
           <div className="text-center mb-8">
             <motion.h1

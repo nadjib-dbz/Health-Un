@@ -53,7 +53,7 @@ const HealthInfoPage = () => {
         <meta name="description" content="Explore trustworthy health articles, tips, and in-depth information on nutrition, fitness, mental health, and wellness." />
       </Helmet>
 
-      <section className="py-12 md:py-16 bg-primary-50 dark:bg-primary-900/20">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16 bg-primary-50 dark:bg-primary-900/20">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.h1

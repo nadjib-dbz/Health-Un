@@ -81,7 +81,7 @@ const HealthPlanPage = () => {
         <meta name="description" content="Create your personalized health and wellness plan based on your unique goals, preferences, and lifestyle." />
       </Helmet>
 
-      <section className="py-12 md:py-16 bg-primary-50 dark:bg-primary-900/20">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16 bg-primary-50 dark:bg-primary-900/20">
         <div className="container-custom">
           <div className="text-center mb-12">
             <motion.h1

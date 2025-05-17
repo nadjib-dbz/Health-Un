@@ -83,7 +83,7 @@ const AboutUsPage = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-28 bg-primary-50 dark:bg-primary-900">
+      <section className="pt-20 pb-12 md:pt-24 md:pb-16 bg-primary-50 dark:bg-primary-900/20">
         <div className="container-custom">
           <div className="text-center">
             <motion.h1
@@ -107,7 +107,7 @@ const AboutUsPage = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="section">
+      <section className="section dark:bg-gray-950">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center gap-12">
             {/* Image */}
