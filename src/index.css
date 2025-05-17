@@ -15,6 +15,11 @@
 :root {
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
+
+  /* Primary color RGB values for animations */
+  --color-primary-400: 79, 209, 197;
+  --color-primary-500: 56, 189, 177;
+  --color-primary-600: 34, 170, 157;
 }
 
 @layer base {
@@ -66,4 +71,47 @@ body {
 
 .title-sm {
   @apply text-xl md:text-2xl font-semibold dark:text-white;
+}
+
+/* Bottom Navigation Styles */
+.nav-item-active {
+  filter: drop-shadow(0 0 8px rgba(var(--color-primary-500), 0.3));
+}
+
+.text-glow {
+  filter: drop-shadow(0 0 2px rgba(var(--color-primary-500), 0.5));
+  position: relative;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-item-active::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 16px;
+    background: conic-gradient(from var(--angle), rgba(var(--color-primary-400), 0.1), rgba(var(--color-primary-600), 0.1), rgba(var(--color-primary-400), 0.1));
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-item-active:hover::before {
+    opacity: 1;
+  }
 }
