@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import HeroSection from '../components/home/HeroSection';
+import ShortcutsSection from '../components/home/ShortcutsSection';
 import FeaturesSection from '../components/home/FeaturesSection';
 import AboutSection from '../components/home/AboutSection';
 import TestimonialsSection from '../components/home/TestimonialsSection';
@@ -13,8 +14,9 @@ const HomePage = () => {
         <title>Health'un - Your Path to Wellness</title>
         <meta name="description" content="Health'un combines trusted health information, personalized wellness plans, and bio products to support your health journey in Algeria." />
       </Helmet>
-      
+
       <HeroSection />
+      <ShortcutsSection />
       <FeaturesSection />
       <AboutSection />
       <TestimonialsSection />
