@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 
 const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen overflow-x-hidden">
       <Navbar />
-      <motion.main 
+      <motion.main
         className="flex-grow"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -55,7 +55,7 @@ const HeroSection = () => {
             />
             {/* Floating stat cards */}
             <motion.div
-              className="absolute -bottom-5 -left-5 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg hidden md:block"
+              className="absolute bottom-0 left-0 transform -translate-x-4 translate-y-4 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg hidden md:block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.7 }}
@@ -65,7 +65,7 @@ const HeroSection = () => {
               <p className="text-sm font-medium dark:text-gray-300">Algerians</p>
             </motion.div>
             <motion.div
-              className="absolute -top-5 -right-5 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg hidden md:block"
+              className="absolute top-0 right-0 transform translate-x-4 -translate-y-4 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg hidden md:block"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}

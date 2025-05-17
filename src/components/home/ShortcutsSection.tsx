@@ -55,7 +55,7 @@ const shortcuts = [
 
 const ShortcutsSection = () => {
   return (
-    <section className="py-8 md:py-10 md:hidden bg-gray-50 dark:bg-gray-900">
+    <section className="py-8 md:py-10 md:hidden bg-gray-50 dark:bg-gray-900 overflow-hidden">
       <div className="container-custom">
         <h2 className="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-6">
           Our Services
