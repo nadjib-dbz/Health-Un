@@ -57,12 +57,12 @@ const ShortcutsSection = () => {
   return (
     <section className="py-8 md:py-10 md:hidden bg-gray-50 dark:bg-gray-900">
       <div className="container-custom">
-        <h2 className="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-6 px-2">
+        <h2 className="text-xl font-heading font-semibold text-gray-900 dark:text-white mb-6">
           Our Services
         </h2>
 
-        <div className="overflow-x-auto pb-4 hide-scrollbar">
-          <div className="flex space-x-4 px-2 min-w-max">
+        <div className="overflow-x-auto pb-4 hide-scrollbar -mx-4">
+          <div className="flex space-x-4 px-4">
             {shortcuts.map((shortcut, index) => (
               <motion.div
                 key={shortcut.id}

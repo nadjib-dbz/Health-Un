@@ -19,7 +19,7 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row items-center w-full">
           {/* Text Content */}
           <motion.div
-            className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0 px-0"
+            className="w-full lg:w-1/2 text-center lg:text-left mb-10 lg:mb-0"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -43,7 +43,7 @@ const HeroSection = () => {
 
           {/* Hero Image */}
           <motion.div
-            className="w-full lg:w-1/2 relative px-0"
+            className="w-full lg:w-1/2 relative"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
